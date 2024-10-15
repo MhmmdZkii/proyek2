@@ -83,7 +83,7 @@
             </div>
 
             <!-- Katalog Kamar -->
-            <div class="mt-4 card-container">
+            {{-- <div class="mt-4 card-container">
                 @if ($kamars->isEmpty())
                     <div class="text-center w-full">
                         <p class="text-gray-700">Tidak ada kamar tersedia.</p>
@@ -110,7 +110,7 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Footer -->
     <footer>
