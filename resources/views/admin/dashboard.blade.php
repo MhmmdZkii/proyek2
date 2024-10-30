@@ -83,34 +83,28 @@
             </div>
 
             <!-- Katalog Kamar -->
-            {{-- <div class="mt-4 card-container">
-                @if ($kamars->isEmpty())
-                    <div class="text-center w-full">
-                        <p class="text-gray-700">Tidak ada kamar tersedia.</p>
-                    </div>
-                @else
-                    @foreach ($kamars as $kamar)
-                        <div class="card" data-id="{{ $kamar->id }}">
-                            <a href="{{ route('kamar.show', $kamar->id) }}">
-                                <img src="{{ asset($kamar->foto) }}" class="card-img-top" alt="Foto Kamar">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $kamar->no_kamar }}</h5>
-                                    <p class="card-text">{{ $kamar->deskripsi }}</p>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Harga:</strong> Rp{{ number_format($kamar->harga, 2) }}/Bulan</li>
-                                        <li class="list-group-item"><strong>Lokasi:</strong> {{ $kamar->lokasi }}</li>
-                                    </ul>
-                                    <div class="tombol">
-                                        <a href="{{ route('payment', $kamar->id) }}" class="">Sewa</a>
-                                    </div>
+            <div class="mt-4 card-container">
+                @foreach ($kamars as $kamar)
+                    <div class="card" data-id="{{ $kamar->id }}">
+                        <a href="{{ route('kamar.show', $kamar->id) }}">
+                            <img src="{{ asset('images/kamarD.jpg' ) }}" class="card-img-top" alt="Foto Kamar">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $kamar->no_kamar }}</h5>
+                                <p class="card-text">{{ $kamar->deskripsi }}</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Harga:</strong> Rp{{ number_format($kamar->harga, 2) }}/Bulan</li>
+                                    <li class="list-group-item"><strong>Lokasi:</strong> {{ $kamar->lokasi }}</li>
+                                </ul>
+                                <div class="tombol">
+                                    <a href="{{ route('payment', $kamar->id) }}" class="">Sewa</a>
                                 </div>
-                            </a>
-                        </div>
-                    @endforeach
-                @endif
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Footer -->
     <footer>

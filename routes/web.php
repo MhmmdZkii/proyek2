@@ -9,51 +9,39 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
-
-// Dashboard rute dengan role
+// Rute untuk menampilkan dashboard berdasarkan role
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        if (auth()->user()->role === 'admin') {
-            return view('admin.dashboard');
-        } elseif (auth()->user()->role === 'mitra') {
-            return view('mitra.dashboard');
-        } else {
-            return view('penyewa.dashboard');
+        $user = auth()->user(); // Ambil pengguna yang sedang login
+        // Redirect sesuai role
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->role === 'mitra') {
+            return redirect()->route('mitra.dashboard');
+        } elseif ($user->role === 'penyewa') {
+            return redirect()->route('penyewa.dashboard');
         }
+        // Redirect jika role tidak dikenali
+        return redirect('/');
     })->name('dashboard');
-    
-    // Rute untuk manajemen kamar
-    Route::get('/kamar', [KamarController::class, 'index'])->name('kamar');
-    Route::get('/kamar/{id}', [KamarController::class, 'show'])->name('kamar.show');
-    Route::get('/payment/{id}', [KamarController::class, 'payment'])->name('payment');
-    Route::post('/lamp/{id}/on', [KamarController::class, 'controlLamp'])->name('lamp.control');
 
-    // Profile management
+    // Rute admin dashboard, menampilkan semua kamar
+    Route::get('/admin/dashboard', [KamarController::class, 'index'])->name('admin.dashboard');
+
+    // Rute penyewa dashboard, menampilkan semua kamar
+    Route::get('/penyewa/dashboard', [KamarController::class, 'index'])->name('penyewa.dashboard');
+
+    // Rute untuk melihat detail kamar berdasarkan ID
+    Route::get('/kamar/{id}', [KamarController::class, 'show'])->name('kamar.show');
+
+    // Rute untuk halaman pembayaran berdasarkan ID kamar
+    Route::get('/payment/{id}', [KamarController::class, 'payment'])->name('payment');
+
+    // Manajemen profil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Role-based specific routes
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-});
-
-Route::middleware(['auth', 'role:mitra'])->group(function () {
-    Route::get('/mitra', function () {
-        return view('mitra.dashboard');
-    })->name('mitra.dashboard');
-});
-
-Route::middleware(['auth', 'role:penyewa'])->group(function () {
-    Route::get('/penyewa', function () {
-        return view('penyewa.dashboard');
-    })->name('penyewa.dashboard');
-});
-
+// Rute auth
 require __DIR__.'/auth.php';

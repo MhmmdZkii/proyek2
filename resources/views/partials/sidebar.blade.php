@@ -11,7 +11,7 @@
         <a href="{{ route('dashboard') }}" class="px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white">
             Home
         </a>
-        <a href="{{ route('kamar') }}" class="px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white">
+        <a href="" class="px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white">
            Add Rooms
         </a>
         <a href="" class="px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white">

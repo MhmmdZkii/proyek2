@@ -83,7 +83,7 @@
             </div>
 
             <!-- Katalog Kamar -->
-            {{-- <div class="mt-4 card-container">
+            <div class="mt-4 card-container">
                 @foreach ($kamars as $kamar)
                     <div class="card" data-id="{{ $kamar->id }}">
                         <a href="{{ route('kamar.show', $kamar->id) }}">
@@ -104,7 +104,7 @@
                 @endforeach
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Footer -->
     <footer>
